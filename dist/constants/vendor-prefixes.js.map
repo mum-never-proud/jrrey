@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/vendor-prefixes.js"],"names":[],"mappings":";;;;;;eAAe,CACb,mBADa,EAEb,yBAFa,EAGb,sBAHa,EAIb,qBAJa,EAKb,oBALa","file":"vendor-prefixes.js","sourceRoot":"../src","sourcesContent":["export default [\n  'SpeechRecognition',\n  'webkitSpeechRecognition',\n  'mozSpeechRecognition',\n  'msSpeechRecognition',\n  'oSpeechRecognition'\n];\n"]}

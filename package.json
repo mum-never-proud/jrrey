@@ -1,0 +1,32 @@
+{
+  "name": "jrrey",
+  "version": "1.0.0",
+  "description": "simple virtual assistant for websites",
+  "main": "./src/jrrey.js",
+  "scripts": {
+    "build": "parcel build ./src/jrrey.js --global '$j'",
+    "dev": "parcel watch ./src/** --global '$j'",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mum-never-proud/jrrey.git"
+  },
+  "keywords": [
+    "siri",
+    "alexa",
+    "voice",
+    "assisitant",
+    "virtual"
+  ],
+  "author": "mum-never-proud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mum-never-proud/jrrey/issues"
+  },
+  "homepage": "https://github.com/mum-never-proud/jrrey#readme",
+  "devDependencies": {
+    "eslint": "7.1.0",
+    "parcel": "1.12.4"
+  }
+}
