@@ -1,11 +1,25 @@
-export function resultHandler(speech, events) {
-  Array.from(speech.results[speech.resultIndex]).forEach(result => {
-    const event = result.transcript.trim();
+function parseTranscripts(speech) {
+  return Array.from(speech.results[speech.resultIndex]).map(result => result.transcript);
+}
 
-    if (typeof events[event] === 'object') {
-      events[event].forEach(callback => callback(event));
+export function resultHandler(speech, events, mode) {
+  const transcripts = parseTranscripts(speech);
 
-      return false;
-    }
-  });
+  if (mode === 'cmd') {
+    transcripts.forEach(transcript => {
+      const event = transcript.trim();
+
+      if (Array.isArray(events[event])) {
+        events[event].forEach(callback => callback(event));
+
+        return false;
+      } else if (typeof events[event] === 'function') {
+        events[event](event);
+
+        return false;
+      }
+    });
+  } else if (typeof events.dictate === 'function') {
+    events.dictate(transcripts);
+  }
 }

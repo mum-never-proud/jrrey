@@ -7,14 +7,15 @@ class Jrrey {
       return;
     }
 
-    speechRecognition.addEventListener('result', (e) => resultHandler(e, this.events));
-
     this.events = options.events || {};
     this.paused = options.paused || true;
+    this.mode = options.mode || 'cmd';
 
     if (this.paused === false) {
       this.start();
     }
+
+    speechRecognition.addEventListener('result', (e) => resultHandler(e, this.events, this.mode));
 
     return this;
   }
@@ -60,7 +61,10 @@ class Jrrey {
   }
 
   off(event, callback) {
-    if (callback) {
+    if (!event) {
+      this.events = {};
+    }
+    else if (callback) {
       this.events[event] = this.events[event].filter(cb => cb !== callback);
     } else {
       this.events[event] = [];
