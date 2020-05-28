@@ -1,6 +1,10 @@
+import { parseCommands } from './utils/parser';
 import speechEventHandler from './utils/speech-event-handlers';
 import speechRecognition from './utils/speech-recognition';
 import speechEvents from './constants/speech-events';
+
+const boundSpeechEventHandler = Symbol();
+
 class Jrrey {
   init(options = {}) {
     if (this.listeningSince) {
@@ -8,41 +12,18 @@ class Jrrey {
     }
 
     this.events = options.events || {};
-    this.paused = options.paused || true;
+    this.commands = parseCommands(options.commands);
     this.mode = options.mode || 'cmd';
     this.keepAlive = options.keepAlive || true;
+    this[boundSpeechEventHandler] = speechEventHandler.bind(this);
 
-    if (this.paused === false) {
-      this.start();
-    }
-
-    speechEvents.forEach(speechEvent =>
-      speechRecognition.addEventListener(speechEvent, e => {
-        if (this.keepAlive && e.type === 'end' && !document.hidden) {
-          if (Date.now() - Number(this.listeningSince) < 1000) {
-            window.setTimeout(() => this.start(), 1000);
-          } else {
-            this.start();
-          }
-        } else {
-          speechEventHandler(e, this.events, this.mode);
-        }
-      })
-    );
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        this.pause();
-      } else if (this.keepAlive || !this.paused) {
-        this.start();
-      }
-    }, false);
+    speechEvents.forEach(speechEvent => speechRecognition.addEventListener(speechEvent, this[boundSpeechEventHandler]));
 
     return this;
   }
 
   start() {
     this.listeningSince = Date.now();
-    this.paused = false;
 
     speechRecognition.abort();
     speechRecognition.start();
@@ -53,36 +34,19 @@ class Jrrey {
   stop() {
     this.listeningSince = null;
     this.keepAlive = false;
-    this.paused = true;
 
     speechRecognition.stop();
 
     return this;
   }
 
-  pause() {
-    this.paused = true;
-
-    speechRecognition.stop();
+  onEvent(event, callback) {
+    this.events[event] = callback;
 
     return this;
   }
 
-  resume() {
-    this.paused = false;
-
-    speechRecognition.start();
-
-    return this;
-  }
-
-  on(event, callback) {
-    (this.events[event] = this.events[event] || []).push(callback);
-
-    return this;
-  }
-
-  off(event, callback) {
+  offEvent(event, callback) {
     if (!event) {
       this.events = {};
     }
@@ -90,6 +54,22 @@ class Jrrey {
       this.events[event] = this.events[event].filter(cb => cb !== callback);
     } else {
       this.events[event] = [];
+    }
+
+    return this;
+  }
+
+  onCommand(phrase, callback) {
+    this.commands.push({ phrase, callback });
+
+    return this;
+  }
+
+  offCommand(phrase) {
+    if (!phrase) {
+      this.commands = [];
+    } else {
+      this.commands = this.commands.filter(command => String(command.phrase) !== String(phrase));
     }
 
     return this;
