@@ -27,7 +27,7 @@ function resultHandler(speech) {
   const transcripts = parseTranscripts(speech);
 
   if (this.mode === 'cmd') {
-    const results = new Map(); // save few bytes
+    const results = new Map();
 
     for (let i = 0; i < transcripts.length; i++) {
       const text = transcripts[i].trim();

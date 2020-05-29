@@ -1,3 +1,5 @@
+import { assertStringOrRegExp, assertFunction } from './assert';
+
 export function parseTranscripts(speech) {
   return Array.from(speech.results[speech.resultIndex]).map(result => result.transcript);
 }
@@ -9,6 +11,9 @@ export function parseCommands(zippedCommands) {
     zippedCommands.forEach(zippedCommand => {
       if (Array.isArray(zippedCommand)) {
         const [phrase, callback] = zippedCommand;
+
+        assertStringOrRegExp(phrase);
+        assertFunction(callback);
 
         commands.push({ phrase, callback });
       } else {

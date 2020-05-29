@@ -1,3 +1,4 @@
+import { assertFunction, assertString, assertStringOrRegExp } from './utils/assert';
 import { parseCommands } from './utils/parser';
 import speechEventHandler from './utils/speech-event-handlers';
 import speechRecognition from './utils/speech-recognition';
@@ -8,7 +9,7 @@ const boundSpeechEventHandler = Symbol();
 class Jrrey {
   init(options = {}) {
     if (this.listeningSince) {
-      return;
+      throw Error('an instance of jrrey is already running');
     }
 
     this.events = options.events || {};
@@ -41,25 +42,30 @@ class Jrrey {
   }
 
   onEvent(event, callback) {
+    assertString(event);
+    assertFunction(callback);
+
     this.events[event] = callback;
 
     return this;
   }
 
-  offEvent(event, callback) {
+  offEvent(event) {
     if (!event) {
       this.events = {};
-    }
-    else if (callback) {
-      this.events[event] = this.events[event].filter(cb => cb !== callback);
     } else {
-      this.events[event] = [];
+      assertString(event);
+
+      delete this.events[event];
     }
 
     return this;
   }
 
   onCommand(phrase, callback) {
+    assertStringOrRegExp(phrase);
+    assertFunction(callback);
+
     this.commands.push({ phrase, callback });
 
     return this;
@@ -69,6 +75,8 @@ class Jrrey {
     if (!phrase) {
       this.commands = [];
     } else {
+      assertStringOrRegExp(phrase);
+
       this.commands = this.commands.filter(command => String(command.phrase) !== String(phrase));
     }
 
