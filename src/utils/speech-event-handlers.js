@@ -1,7 +1,7 @@
 import { parseTranscripts } from './parser';
 
 export default function speechEventHandler(speechEvent) {
-  if (this.keepAlive && speechEvent.type === 'end') {
+  if (this.keepAlive && speechEvent.type === 'end' && this.listeningSince) {
     if (Date.now() - Number(this.listeningSince) < 1000) {
       window.setTimeout(() => this.start(), 1000);
     } else {

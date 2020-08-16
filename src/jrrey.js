@@ -34,7 +34,6 @@ class Jrrey {
 
   stop() {
     this.listeningSince = null;
-    this.keepAlive = false;
 
     speechRecognition.stop();
 
