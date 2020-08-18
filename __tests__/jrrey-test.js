@@ -9,7 +9,7 @@ describe('jrrey', () => {
       stop() {}
     };
 
-    jrrey = require('../src/jrrey').init(global.jerryContext);
+    jrrey = require('../src/jrrey').init(global.jrreyContext);
   });
 
   beforeEach(() => {

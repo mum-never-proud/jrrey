@@ -72,7 +72,7 @@ module.exports = {
         ]
       ]
     },
-    jerryContext: {
+    jrreyContext: {
       mode: 'cmd',
       commands: [],
       events: {},
