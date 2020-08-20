@@ -1,0 +1,19 @@
+#float-menu-container {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 2;
+}
+
+#float-menu-container > img {
+  background-color: #146fbe;
+  padding: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+#float-menu-container > img:hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 24px 36px rgba(0,0,0,0.11), 0 24px 46px rgba(220, 233, 255, 0.48);
+}

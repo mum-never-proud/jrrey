@@ -1,0 +1,29 @@
+.todos-container {
+  cursor: not-allowed;
+}
+
+.todos-container .card {
+  pointer-events: none;
+}
+
+.todos-container .card .card-body {
+  min-height: 255px;
+}
+
+.todos {
+  padding: 0;
+  list-style-type: none;
+}
+
+.todos > li > .todo-id {
+  position: absolute;
+}
+
+.todos > li > input[type="checkbox"] {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.todos > li.completed {
+  color: #999;
+}

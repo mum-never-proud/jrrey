@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+html,
+body {
+  font-family: "Comfortaa", Helvetica, Arial, Verdana, Tahoma, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+h1,
+h3,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.sub-header {
+  color: #146fbe;
+}
+
+textarea.form-control,
+textarea.form-control[readonly] {
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  color: #146fbe;
+  outline: none;
+  resize: none;
+  outline: 0;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+textarea.form-control.not-allowed {
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: #146fbe;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #146fbe;
+}
+
+footer {
+  font-size: 12px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
