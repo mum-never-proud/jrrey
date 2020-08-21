@@ -6,7 +6,7 @@
   "scripts": {
     "build": "parcel build ./src/jrrey.js --global '$j'",
     "dev": "parcel watch ./src/** --global '$j'",
-    "build-demo": "parcel build ./jrrey-demo-app/index.html -d ./docs",
+    "build-demo": "parcel build --public-url . ./jrrey-demo-app/index.html -d ./docs",
     "dev-demo": "parcel serve ./jrrey-demo-app/index.html -d ./docs",
     "test": "jest",
     "test:coverage": "jest --coverage"
