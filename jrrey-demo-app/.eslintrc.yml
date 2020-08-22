@@ -1,0 +1,22 @@
+env:
+  browser: true
+  es6: true
+extends:
+  - airbnb-base
+  - preact
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parserOptions:
+  ecmaVersion: 11
+  sourceType: module
+rules: {
+  "no-restricted-syntax": "off",
+  "no-param-reassign": [2, {"props": false}],
+  "no-alert": "off"
+}
+settings: {
+  import/resolver: {
+    babel-module: {}
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { h } from 'preact';
 import { useState, useEffect } from 'preact/compat';
 import FloatMenu from 'components/float-menu';
@@ -34,7 +35,7 @@ export default function Home() {
           </span>
         </p>
         <div className="alert alert-warning text-center" role="alert">
-          Even though MS Edge claims to support SpeechRecognition, events are not fired, more info at <a href="https://caniuse.com/#feat=speech-recognition" target="_blank">caniuse</a>.
+          Even though MS Edge claims to support SpeechRecognition, events are not fired, more info at <a href="https://caniuse.com/#feat=speech-recognition" target="_blank" rel="noreferrer">caniuse</a>.
         </div>
       </div>
       <Notes isJrreyListening={isJrreyListening} />

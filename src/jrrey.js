@@ -29,7 +29,7 @@ class Jrrey {
     this.listeningSince = Date.now();
 
     speechRecognition.abort();
-    speechRecognition.start();
+    window.setTimeout(() => speechRecognition.start());
 
     return this;
   }

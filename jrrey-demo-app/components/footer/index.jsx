@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import CookieLove from 'images/icecream-love.svg';
+import IcecreamLove from 'images/icecream-love.svg';
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <footer>
           <p className="text-center">
             made with much
-            <img alt={"logo"} src={CookieLove} width="50" height="50" />
+            <img alt={"logo"} src={IcecreamLove} width="50" height="50" />
           </p>
         </footer>
       </div>

@@ -37,6 +37,7 @@ export default function Notes({ isJrreyListening }) {
         className="form-control not-allowed"
         rows="10"
         readonly
+        // eslint-disable-next-line no-nested-ternary
         placeholder={isJrreyListening
           ? isTakingNotes
             ? 'Start speaking...'

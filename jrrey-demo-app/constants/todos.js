@@ -16,5 +16,5 @@ export default [
     name: 'work hard at gym',
     isCompleted: false,
     createdAt: Date.now(),
-  }
+  },
 ];

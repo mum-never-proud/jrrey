@@ -10,31 +10,37 @@ export default function Notes({ isJrreyListening }) {
   const [filter, setFilter] = useState({ name: 'All', options: {} });
   const [todos, setTodos] = useState(sampleTodos);
   const isValidTodoIndex = (index, length) => (index > 0 && index <= length);
-  const filterTodos = (todos, option = {}) => {
-    return todos.filter((todo) => {
-      for (const [key, value] of Object.entries(option)) {
-        if (todo[key] !== value || todo[key] === undefined) {
-          return false;
-        }
+  const filterTodos = (todos, option = {}) => todos.filter((todo) => {
+    for (const [key, value] of Object.entries(option)) {
+      if (todo[key] !== value || todo[key] === undefined) {
+        return false;
       }
-
-      return true;
-    });
-  };
-  const createTodo = (id, name) => ({ id, name, isCompleted: false, createdAt: Date.now() });
-  const addItem = ([phrase]) => setTodos((currentTodos) => [...currentTodos, createTodo(currentTodos.length + 1, phrase[1])]);
-  const completeItem = ([phrase]) => setTodos((currentTodos) => {
-    if (isValidTodoIndex(phrase[1], currentTodos.length)) {
-      currentTodos[phrase[1] - 1].isCompleted = true;
-    } else {
-      alert('Invalid todo item ID');
     }
 
-    return [...currentTodos];
+    return true;
+  });
+  const createTodo = (id, name) => ({
+    id,
+    name,
+    isCompleted: false,
+    createdAt: Date.now(),
   });
   const filteredTodos = filterTodos(todos, filter.options);
 
   useEffect(() => {
+    const addItem = ([phrase]) => {
+      setTodos((currentTodos) => [...currentTodos, createTodo(currentTodos.length + 1, phrase[1])]);
+    }
+    const completeItem = ([phrase]) => setTodos((currentTodos) => {
+      if (isValidTodoIndex(phrase[1], currentTodos.length)) {
+        currentTodos[phrase[1] - 1].isCompleted = true;
+      } else {
+        alert('Invalid todo item ID');
+      }
+
+      return [...currentTodos];
+    });
+
     jrrey.onCommand(/new item (.*)/, addItem);
     jrrey.onCommand(/complete item (\d)/, completeItem);
     jrrey.onCommand(/show all items/, () => setFilter({ name: 'All', options: {} }));
