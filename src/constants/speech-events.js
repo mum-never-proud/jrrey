@@ -7,5 +7,5 @@ export default [
   'speechend',
   'result',
   'error',
-  'nomatch'
+  'nomatch',
 ];

@@ -1,16 +1,16 @@
 import speechRecognitionOptions from '../constants/speech-recognition-options';
 
-const speechRecognitionVendor = window.SpeechRecognition
+const SpeechRecognitionVendor = window.SpeechRecognition
   || window.webkitSpeechRecognition
   || window.mozSpeechRecognition
   || window.msSpeechRecognition
   || window.oSpeechRecognition;
 
-if (!speechRecognitionVendor) {
+if (!SpeechRecognitionVendor) {
   throw Error('SpeechRecognition not supported in this browser');
 }
 
-const speechRecognition = new speechRecognitionVendor();
+const speechRecognition = new SpeechRecognitionVendor();
 
 Object.assign(speechRecognition, speechRecognitionOptions);
 

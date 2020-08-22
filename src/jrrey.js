@@ -4,7 +4,7 @@ import speechEventHandler from './utils/speech-event-handlers';
 import speechRecognition from './utils/speech-recognition';
 import speechEvents from './constants/speech-events';
 
-const boundSpeechEventHandler = Symbol();
+const boundSpeechEventHandler = Symbol('speech event handler');
 
 class Jrrey {
   init(options = {}) {
@@ -18,7 +18,9 @@ class Jrrey {
     this.keepAlive = options.keepAlive || true;
     this[boundSpeechEventHandler] = speechEventHandler.bind(this);
 
-    speechEvents.forEach(speechEvent => speechRecognition.addEventListener(speechEvent, this[boundSpeechEventHandler]));
+    speechEvents.forEach((speechEvent) => {
+      speechRecognition.addEventListener(speechEvent, this[boundSpeechEventHandler]);
+    });
 
     return this;
   }
@@ -76,7 +78,7 @@ class Jrrey {
     } else {
       assertStringOrRegExp(phrase);
 
-      this.commands = this.commands.filter(command => String(command.phrase) !== String(phrase));
+      this.commands = this.commands.filter((command) => String(command.phrase) !== String(phrase));
     }
 
     return this;

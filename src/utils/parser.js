@@ -1,14 +1,14 @@
 import { assertStringOrRegExp, assertFunction } from './assert';
 
 export function parseTranscripts(speech) {
-  return Array.from(speech.results[speech.resultIndex]).map(result => result.transcript);
+  return Array.from(speech.results[speech.resultIndex]).map((result) => result.transcript);
 }
 
 export function parseCommands(zippedCommands) {
   const commands = [];
 
   if (Array.isArray(zippedCommands)) {
-    zippedCommands.forEach(zippedCommand => {
+    zippedCommands.forEach((zippedCommand) => {
       if (Array.isArray(zippedCommand)) {
         const [phrase, callback] = zippedCommand;
 
@@ -17,7 +17,7 @@ export function parseCommands(zippedCommands) {
 
         commands.push({ phrase, callback });
       } else {
-        throw Error('commands should be a zipped array e.g [ [command, callback] ]')
+        throw Error('commands should be a zipped array e.g [ [command, callback] ]');
       }
     });
 
