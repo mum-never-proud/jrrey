@@ -37,6 +37,18 @@ export default function Home() {
         <div className="alert alert-warning text-center" role="alert">
           Even though MS Edge claims to support SpeechRecognition, events are not fired, more info at <a href="https://caniuse.com/#feat=speech-recognition" target="_blank" rel="noreferrer">caniuse</a>.
         </div>
+        <div>
+          Few caveats
+          <ul>
+            <li>
+              This Web App can only be controlled by voice, in developer words pointer events are turned off, <span className="font-weight-bold">except for Turning On/Off the Mic.</span>
+            </li>
+            <li>
+              Based on my experience, if you are using SpeechRecognition for the first time,
+               there are chances of wrong predictions which may be improved overtime 😊
+            </li>
+          </ul>
+        </div>
       </div>
       <Notes isJrreyListening={isJrreyListening} />
       <Todo isJrreyListening={isJrreyListening} />
