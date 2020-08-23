@@ -18,7 +18,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    jrrey.onEvent('fallback', () => alert('Whoop\'s, wasn\'t expecting that! Please try again.'));
+    jrrey.onEvent('fallback', (transcripts) => {
+      const predictions = transcripts.map((transcript, index) => `${index + 1}. ${transcript}`).join('\n');
+
+      alert(`Whoop's, wasn't expecting that! Please try again.\n\nPredictions:\n${predictions}`);
+    });
     jrrey.onEvent('error', (e) => setState({ isJrreyListening: false, isBlocked: e.error === 'not-allowed' }));
     jrrey.onEvent('start', () => setState({ isJrreyListening: true, isBlocked: false }));
     jrrey.onEvent('end', () => setState({ isJrreyListening: false, isBlocked: false }));

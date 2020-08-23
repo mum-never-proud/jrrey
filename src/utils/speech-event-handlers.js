@@ -29,7 +29,7 @@ function resultHandler(speech) {
         this.commands[index].callback(output);
       }
     } else if (typeof this.events.fallback === 'function') {
-      this.events.fallback();
+      this.events.fallback(transcripts);
     }
   } else if (typeof this.events.dictate === 'function') {
     this.events.dictate(transcripts);

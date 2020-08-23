@@ -1,21 +1,21 @@
 import { h } from 'preact';
-import { useEffect, useState, useRef } from 'preact/compat';
+import { useEffect, useState } from 'preact/compat';
 import jrrey from 'utils/jrrey';
 
 export default function Notes({ isJrreyListening }) {
   const [isTakingNotes, setIsTakingNotes] = useState(false);
   const [notes, setNotes] = useState('');
-  const prevNotes = useRef(notes);
-  const dictateHandler = ([sentence]) => {
-    const isStopTakingNotesCommand = sentence.trim() === 'stop taking notes';
+  const dictateHandler = ([sentence]) => setNotes((currentNotes) => {
+    const trimmedSentence = sentence.trim();
 
-    if (isStopTakingNotesCommand) {
+    if (trimmedSentence === 'stop taking notes') {
       setIsTakingNotes(false);
-    } else {
-      prevNotes.current += sentence;
-      setNotes(prevNotes.current.trim());
+
+      return currentNotes;
     }
-  };
+
+    return currentNotes + sentence;
+  });
 
   useEffect(() => {
     jrrey.onCommand(/take notes/, () => setIsTakingNotes(this.props.isJrreyListening));
