@@ -59,7 +59,7 @@ Add callback for the given command. Command can either be a string or a RegExp.
 
 > offCommand
 
-Removes callback for the given command.
+Remove callback for the given command.
 
 ```javascript
   jrreyInstance.offCommand('show me cat');
