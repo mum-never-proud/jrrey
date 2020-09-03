@@ -2,9 +2,9 @@
   "name": "jrrey",
   "version": "1.0.0",
   "description": "simple virtual assistant for websites",
-  "main": "./src/jrrey.js",
+  "main": "./dist/jrrey.min.js",
   "scripts": {
-    "build": "rimraf dist && parcel build ./src/jrrey.js --global '$j'",
+    "build": "rimraf dist && parcel build ./src/jrrey.js --global '$j' -o jrrey.min.js",
     "build-demo": "rimraf docs && parcel build --public-url . ./jrrey-demo-app/index.html -d ./docs",
     "dev": "parcel watch ./src/** --global '$j'",
     "dev-demo": "parcel serve ./jrrey-demo-app/index.html -d ./docs",
