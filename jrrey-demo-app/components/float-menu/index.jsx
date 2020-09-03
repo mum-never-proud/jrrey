@@ -1,23 +1,19 @@
 import { h } from 'preact';
-import { useState, useEffect } from 'preact/compat';
 import Close from 'images/close.svg';
 import Microphone from 'images/microphone.svg';
 import './style.css';
 
-export default function FloatMenu({ onToggle }) {
-  const [isActivateMicrophone, setisActivateMicrophone] = useState(false);
-  const toggleisActivateMicrophone = () => setisActivateMicrophone(!isActivateMicrophone);
-
-  useEffect(() => {
+export default function FloatMenu({ isActiveMicrophone, onToggle }) {
+  const toggleisActivateMicrophone = () => {
     if (typeof onToggle === 'function') {
-      onToggle(isActivateMicrophone);
+      onToggle();
     }
-  }, [isActivateMicrophone, onToggle]);
+  };
 
   return (
     <div id="float-menu-container">
       {
-        isActivateMicrophone
+        isActiveMicrophone
           ? <img src={Close} alt="close" width="50" height="50" onClick={toggleisActivateMicrophone} />
           : <img src={Microphone} alt="microphone" width="50" height="50" onClick={toggleisActivateMicrophone} />
       }

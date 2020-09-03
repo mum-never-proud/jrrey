@@ -6,7 +6,7 @@
 	"plugins": [
     ["module-resolver", {
       "alias": {
-				"jrrey": "./dist/jrrey.js",
+				"jrrey": "./dist/jrrey.min.js",
 				"utils": "./jrrey-demo-app/utils",
 				"components": "./jrrey-demo-app/components",
 				"images": "./jrrey-demo-app/public/images",
