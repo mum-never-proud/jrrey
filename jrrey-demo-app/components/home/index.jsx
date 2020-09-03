@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { h } from 'preact';
-import { useState, useEffect } from 'preact/compat';
+import { useCallback, useState, useEffect } from 'preact/compat';
 import FloatMenu from 'components/float-menu';
 import Notes from 'components/notes';
 import Todo from 'components/todo';
@@ -9,13 +9,13 @@ import jrrey from 'utils/jrrey';
 export default function Home() {
   const [state, setState] = useState({ isJrreyListening: false, isBlocked: false });
   const { isBlocked, isJrreyListening } = state;
-  const toggleHandler = (isActivateMicrophone) => {
+  const toggleHandler = useCallback((isActivateMicrophone) => {
     if (isActivateMicrophone) {
       jrrey.start();
     } else {
       jrrey.stop();
     }
-  };
+  }, []);
 
   useEffect(() => {
     jrrey.onEvent('fallback', (transcripts) => {

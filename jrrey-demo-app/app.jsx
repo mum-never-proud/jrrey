@@ -3,7 +3,7 @@ import Header from 'components/header';
 import Home from 'components/home';
 import Footer from 'components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+import 'unified-demo-theme/dist/styles/theme.min.css';
 
 const App = () => (
   <>

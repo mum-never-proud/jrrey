@@ -12,7 +12,7 @@ export default function FloatMenu({ onToggle }) {
     if (typeof onToggle === 'function') {
       onToggle(isActivateMicrophone);
     }
-  }, [isActivateMicrophone]);
+  }, [isActivateMicrophone, onToggle]);
 
   return (
     <div id="float-menu-container">

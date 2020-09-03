@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import IcecreamLove from 'images/icecream-love.svg';
+import IcecreamLove from 'unified-demo-theme/dist/images/icecream-love.svg';
 
 export default function Footer() {
   return (

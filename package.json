@@ -4,12 +4,12 @@
   "description": "simple virtual assistant for websites",
   "main": "./src/jrrey.js",
   "scripts": {
-    "build": "parcel build ./src/jrrey.js --global '$j'",
+    "build": "rimraf dist && parcel build ./src/jrrey.js --global '$j'",
+    "build-demo": "rimraf docs && parcel build --public-url . ./jrrey-demo-app/index.html -d ./docs",
     "dev": "parcel watch ./src/** --global '$j'",
-    "build-demo": "parcel build --public-url . ./jrrey-demo-app/index.html -d ./docs",
     "dev-demo": "parcel serve ./jrrey-demo-app/index.html -d ./docs",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test-coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,8 @@
   "homepage": "https://github.com/mum-never-proud/jrrey#readme",
   "dependencies": {
     "bootstrap": "4.5.2",
-    "preact": "10.4.7"
+    "preact": "10.4.7",
+    "unified-demo-theme": "https://github.com/mum-never-proud/unified-demo-theme.git"
   },
   "devDependencies": {
     "@babel/core": "7.11.1",
@@ -45,6 +46,7 @@
     "eslint-plugin-import": "2.22.0",
     "jest": "26.0.1",
     "parcel": "1.12.4",
-    "parcel-bundler": "1.12.4"
+    "parcel-bundler": "1.12.4",
+    "rimraf": "3.0.2"
   }
 }
