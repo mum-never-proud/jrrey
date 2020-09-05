@@ -1,11 +1,16 @@
+/* eslint-disable global-require */
+/* eslint-disable class-methods-use-this */
 describe('jrrey', () => {
   let jrrey;
 
   beforeAll(() => {
     global.SpeechRecognition = class {
       addEventListener() {}
+
       start() {}
+
       abort() {}
+
       stop() {}
     };
 

@@ -1,10 +1,11 @@
+/* eslint-disable global-require */
 describe('speech recognition', () => {
   beforeEach(() => {
-      jest.resetModules();
+    jest.resetModules();
   });
 
   it('should throw error when speech recognition is not supported', () => {
-    expect(() => { require('../src/utils/speech-recognition') }).toThrowError(Error);
+    expect(() => { require('../src/utils/speech-recognition'); }).toThrowError(Error);
   });
 
   it('should return speech recognition object', () => {

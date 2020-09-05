@@ -8,6 +8,7 @@
     "build-demo": "rimraf docs && parcel build --public-url . ./jrrey-demo-app/index.html -d ./docs",
     "dev": "parcel watch ./src/** --global '$j'",
     "dev-demo": "parcel serve ./jrrey-demo-app/index.html -d ./docs",
+    "lint-css": "stylelint '**/*.css'",
     "test": "jest",
     "test-coverage": "jest --coverage"
   },
@@ -44,9 +45,12 @@
     "eslint-config-preact": "1.1.1",
     "eslint-import-resolver-babel-module": "5.1.2",
     "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "24.0.0",
     "jest": "26.0.1",
     "parcel": "1.12.4",
     "parcel-bundler": "1.12.4",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "stylelint": "13.7.0",
+    "stylelint-config-standard": "20.0.0"
   }
 }

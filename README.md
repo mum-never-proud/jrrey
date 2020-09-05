@@ -2,7 +2,7 @@
 
 A JS SpeechRecognition library
 
-# Demo
+## Demo
 
 Check out <a href="https://mum-never-proud.github.io/jrrey/">jrrey</a>!
 
