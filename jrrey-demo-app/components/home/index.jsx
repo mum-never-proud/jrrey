@@ -4,7 +4,7 @@ import { useState, useEffect } from 'preact/compat';
 import FloatMenu from 'components/float-menu';
 import Notes from 'components/notes';
 import Todo from 'components/todo';
-import jrrey from 'utils/jrrey';
+import jrrey from 'jrrey';
 
 export default function Home() {
   const [state, setState] = useState({
@@ -21,15 +21,31 @@ export default function Home() {
   };
 
   useEffect(() => {
-    jrrey.onEvent('fallback', (transcripts) => {
-      const predictions = transcripts.map((transcript, index) => `${index + 1}. ${transcript}`).join('\n');
+    if (jrrey) {
+      jrrey.onEvent('fallback', (transcripts) => {
+        const predictions = transcripts.map((transcript, index) => `${index + 1}. ${transcript}`).join('\n');
 
-      alert(`Whoop's, wasn't expecting that! Please try again.\n\nPredictions:\n${predictions}`);
-    });
-    jrrey.onEvent('error', (e) => setState({ isJrreyListening: false, isBlocked: e.error === 'not-allowed' }));
-    jrrey.onEvent('start', () => setState({ isJrreyListening: true, isBlocked: false }));
-    jrrey.onEvent('end', () => setState({ isJrreyListening: false, isBlocked: false }));
+        alert(`Whoop's, wasn't expecting that! Please try again.\n\nPredictions:\n${predictions}`);
+      });
+      jrrey.onEvent('error', (e) => setState({ isJrreyListening: false, isBlocked: e.error === 'not-allowed' }));
+      jrrey.onEvent('start', () => setState({ isJrreyListening: true, isBlocked: false }));
+      jrrey.onEvent('end', () => setState({ isJrreyListening: false, isBlocked: false }));
+    }
   }, []);
+
+  if (!jrrey) {
+    return (
+      <div className="row mt-3">
+        <div className="col-12">
+          <div className="alert alert-warning text-center" role="alert">
+          Whoops this browser doesn't seems to support SpeechRecognition. More info at
+          {' '}
+          <a href="https://caniuse.com/#feat=speech-recognition" target="_blank" rel="noreferrer">caniuse</a>.
+        </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="row mt-3">

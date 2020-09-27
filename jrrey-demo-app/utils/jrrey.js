@@ -1,5 +1,7 @@
 import jrrey from 'jrrey';
 
-jrrey.init({});
+if (jrrey) {
+  jrrey.init({});
+}
 
 export default jrrey;

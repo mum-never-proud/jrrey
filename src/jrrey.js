@@ -85,4 +85,4 @@ class Jrrey {
   }
 }
 
-module.exports = new Jrrey();
+module.exports = !speechRecognition ? null : new Jrrey();

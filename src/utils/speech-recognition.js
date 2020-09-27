@@ -1,17 +1,18 @@
 import speechRecognitionOptions from '../constants/speech-recognition-options';
 
-const SpeechRecognitionVendor = window.SpeechRecognition
+export default (function speechRecognition() {
+  const SpeechRecognitionVendor = window.SpeechRecognition
   || window.webkitSpeechRecognition
   || window.mozSpeechRecognition
   || window.msSpeechRecognition
   || window.oSpeechRecognition;
 
-if (!SpeechRecognitionVendor) {
-  throw Error('SpeechRecognition not supported in this browser');
-}
+  if (!SpeechRecognitionVendor) {
+    // eslint-disable-next-line no-console
+    console.warn('SpeechRecognition not supported');
 
-const speechRecognition = new SpeechRecognitionVendor();
+    return null;
+  }
 
-Object.assign(speechRecognition, speechRecognitionOptions);
-
-export default speechRecognition;
+  return Object.assign(new SpeechRecognitionVendor(), speechRecognitionOptions);
+}());
