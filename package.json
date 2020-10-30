@@ -31,7 +31,7 @@
   "homepage": "https://github.com/mum-never-proud/jrrey#readme",
   "dependencies": {
     "bootstrap": "4.5.2",
-    "preact": "10.4.7",
+    "preact": "10.5.4",
     "unified-demo-theme": "https://github.com/mum-never-proud/unified-demo-theme.git",
     "utils": "0.3.1"
   },
